@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  survivor: 
+  water: 
+  food: 
+  medication: 
+  ammunition: MyString
+  integer: MyString
+
+two:
+  survivor: 
+  water: 
+  food: 
+  medication: 
+  ammunition: MyString
+  integer: MyString
