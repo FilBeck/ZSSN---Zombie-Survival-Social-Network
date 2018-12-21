@@ -22,6 +22,22 @@ namespace :dev do
     end
 
     #arrumar essa parte do .all
+    # Survivor.all.each do |s|
+    #   Inventory.create!(
+    #     survivor_id: s.id,
+    #     water: 0,
+    #     food: 0,
+    #     medication: 0,
+    #     ammunition: 0
+    #   )
+  end
+
+    puts "Survivors found!"
+  end
+
+  task add_inventories: :environment do
+    puts "Creating inventories"
+
     Survivor.all.each do |s|
       Inventory.create!(
         survivor_id: s.id,
@@ -30,10 +46,10 @@ namespace :dev do
         medication: 0,
         ammunition: 0
       )
+    end
+    puts "Packs created!"
+
   end
 
-
-    puts "Survivors found!"
-  end
 
 end
