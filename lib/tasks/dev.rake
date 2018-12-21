@@ -21,11 +21,16 @@ namespace :dev do
       )
     end
 
-    Survivor.all.each{ |s|
+    #arrumar essa parte do .all
+    Survivor.all.each do |s|
       Inventory.create!(
-        
+        survivor_id: s.id,
+        water: 0,
+        food: 0,
+        medication: 0,
+        ammunition: 0
       )
-    }
+  end
 
 
     puts "Survivors found!"
