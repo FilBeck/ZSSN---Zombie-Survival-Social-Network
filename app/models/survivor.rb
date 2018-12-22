@@ -13,4 +13,22 @@ class Survivor < ApplicationRecord
      	survivor.infected = 1;
      	survivor.save
      end
+
+     def trade(inventory1, inventory2)
+     	survivor1 = Survivor.find(inventory1.survivor_id)
+     	
+     	if survivor1.infected == 1
+     		return "#{survivor1.name} is infected. Run!"
+     	end
+
+     	survivor2 = Survivor.find(inventory2.survivor_id)
+
+		if survivor2.infected == 1
+     		return "#{survivor2.name} is infected. Run!"
+     	end     	
+
+     	
+
+
+     end
 end

@@ -19,9 +19,6 @@ class SurvivorsController < ApplicationController
     #@inventory = @survivor.build_inventory
 
     if @survivor.save
-      # @inventory = @survivor.build_inventory(survivor_params[:inventory])
-      # @inventory.save
-
       render json: @survivor, status: :created, location: @survivor
     else
       render json: @survivor.errors, status: :unprocessable_entity
@@ -30,7 +27,7 @@ class SurvivorsController < ApplicationController
 
   # PATCH/PUT /survivors/1
   def update
-    if @survivor.update(survivor_update_params)
+    if @survivor.update(survivor_params)
       render json: @survivor
     else
       render json: @survivor.errors, status: :unprocessable_entity
@@ -60,10 +57,6 @@ class SurvivorsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def survivor_params
       params.require(:survivor).permit(:name, :age, :gender, :infected, :geo_location, inventory_attributes: [:water, :food, :medication, :ammunition])
-    end
-
-    def survivor_update_params
-      params.require(:survivor).permit(:geo_location)
     end
 
 end
