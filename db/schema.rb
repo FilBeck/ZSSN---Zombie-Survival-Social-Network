@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_21_024356) do
+ActiveRecord::Schema.define(version: 2018_12_22_144837) do
+
+  create_table "infection_reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "reporter_id"
+    t.integer "survivor_reported_id"
+  end
 
   create_table "inventories", force: :cascade do |t|
     t.integer "survivor_id"
     t.integer "water"
     t.integer "food"
     t.integer "medication"
-    t.string "ammunition"
+    t.integer "ammunition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["survivor_id"], name: "index_inventories_on_survivor_id"

@@ -30,7 +30,6 @@ namespace :dev do
     #     medication: 0,
     #     ammunition: 0
     #   )
-  end
 
     puts "Survivors found!"
   end
