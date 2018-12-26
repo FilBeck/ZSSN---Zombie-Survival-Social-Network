@@ -16,16 +16,16 @@ The most important goal of this project is to find another survivors to help alo
 
 Whenever you find another person (preferably not infected) be sure to add them to the network, using the following POST request to that same address:
 > {
-			    "name": "Reginaldo Rotten",
-			    "age": 69,
-			    "gender": "M",
-			    "infected": 0,
-			    "geo_location": "{:latitude=>73, :longitude=>92}",
-			    "inventory_attributes": {
-			        "water": 10,
-			        "food": 34,
-			        "medication": 8,
-			        "ammunition": "15"
+    "name": "Reginaldo Rotten",
+    "age": 69,
+    "gender": "M",
+    "infected": 0,
+    "geo_location": "{:latitude=>73, :longitude=>92}",
+    "inventory_attributes": {
+	"water": 10,
+	"food": 34,
+	"medication": 8,
+	"ammunition": "15"
     }
 
 You should put the coordinates of the survivor, as well as their personal goods they can share afterwards. Once registerd, a survivor location can be updated by informing their new "geo_location" through a PUT request to the address:
