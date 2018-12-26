@@ -3,15 +3,16 @@ class InventoriesController < ApplicationController
 
   # GET /inventories
   def index
-    @inventories = Inventory.all
+    @inventories = Inventory.where(survivor_id: params[:survivor_id])
 
     render json: @inventories
   end
 
   # GET /inventories/1
   def show
+    @inventory = Inventory.where(survivor_id: params[:survivor_id])
     render json: @inventory
-  end
+  end 
 
   # POST /inventories
   def create
@@ -21,7 +22,7 @@ class InventoriesController < ApplicationController
       render json: @inventory, status: :created, location: @inventory
     else
       render json: @inventory.errors, status: :unprocessable_entity
-    end
+    end  
   end
 
   # PATCH/PUT /inventories/1
@@ -30,6 +31,19 @@ class InventoriesController < ApplicationController
       render json: @inventory
     else
       render json: @inventory.errors, status: :unprocessable_entity
+    end
+  end
+
+  def trade
+    if (inventory_trade_params)
+      inventory1 = params[:trade_survivor_1]
+      inventory2 = params[:trade_survivor_2]
+
+      result = Survivor.trade(inventory1, inventory2)
+
+      render json: { teste: result }
+    else
+      render json: {teste: "trade failed"}
     end
   end
 
@@ -55,5 +69,10 @@ class InventoriesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def inventory_params
       params.require(:inventory).permit(:survivor_id, :water, :food, :medication, :ammunition)
+    end
+
+    def inventory_trade_params
+      params.require(:trade_survivor_1).permit(:survivor_id, :water, :food, :medication, :ammunition)
+      params.require(:trade_survivor_2).permit(:survivor_id, :water, :food, :medication, :ammunition)
     end
 end

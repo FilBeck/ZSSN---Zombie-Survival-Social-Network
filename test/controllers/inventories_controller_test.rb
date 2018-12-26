@@ -35,4 +35,9 @@ class InventoriesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response 204
   end
+
+  test "delete all inventories" do
+    delete "/destroyallinventories"
+    assert_response :success
+  end
 end

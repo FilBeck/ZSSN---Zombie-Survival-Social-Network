@@ -30,22 +30,25 @@ class InfectionReportsController < ApplicationController
       survivorReports = InfectionReport.where("survivor_reported_id = ?", params[:survivor_reported_id])
 
       if survivorReports.count >= 3
-        survivor.mark_as_infected survivor
+        survivor.mark_as_infected(survivor)
 
         message = "#{survivor.name} now declared an infected!"
       else
-        message = "#{survivor.name} is #{3 - survivorReports.count} from be declared infected"
+        message = "#{survivor.name} is #{3 - survivorReports.count} reports from being declared infected"
       end
 
-      render json: {infection_report: @infection_report, msg: message}, status: :created, location: @infection_report
+      render json: {infection_report: @infection_report, alert: message}, status: :created, location: @infection_report
     else
       render json: @infection_report.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /infection_reports/1
-  def destroy
-    @infection_report.destroy
+  def deleteall
+    @infection_reports = InfectionReport.all
+
+    @infection_reports.each do |i|
+      i.destroy
+    end
   end
 
   private

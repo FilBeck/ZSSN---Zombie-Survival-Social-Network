@@ -23,16 +23,11 @@ class InfectionReportsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should update infection_report" do
-    patch infection_report_url(@infection_report), params: { infection_report: {  } }, as: :json
-    assert_response 200
+    assert_response 204
   end
 
-  test "should destroy infection_report" do
-    assert_difference('InfectionReport.count', -1) do
-      delete infection_report_url(@infection_report), as: :json
-    end
-
-    assert_response 204
+  test "should delete all reports" do
+    get "/deleteallreports"
+    assert_response :success
   end
 end

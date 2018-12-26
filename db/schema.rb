@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_22_144837) do
+ActiveRecord::Schema.define(version: 2018_12_25_234322) do
+
+  create_table "api_statistics", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "infection_reports", force: :cascade do |t|
     t.datetime "created_at", null: false

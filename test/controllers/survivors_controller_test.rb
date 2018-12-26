@@ -35,4 +35,15 @@ class SurvivorsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response 204
   end
+
+  test "should show all infected survivors" do
+    get '/survivors/showinfected'
+    assert_response :success
+  end
+
+test "should delete all survivors" do
+    get '/killallsurvivors'
+    assert_response :success
+  end
+
 end

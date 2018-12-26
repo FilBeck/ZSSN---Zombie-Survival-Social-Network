@@ -34,6 +34,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Fake names and data creation
   gem 'faker'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'minitest'
 end
 
 group :development do

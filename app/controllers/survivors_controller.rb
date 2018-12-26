@@ -5,7 +5,7 @@ class SurvivorsController < ApplicationController
   def index
     @survivors = Survivor.all
 
-    render json: @survivors.map {|s| s.attributes.merge({teste: "jackson"})}
+    render json: @survivors
   end
 
   # GET /survivors/1
@@ -13,11 +13,16 @@ class SurvivorsController < ApplicationController
     render json: @survivor
   end
 
+  def show_infected
+    @infected = Survivor.where(infected: 1)
+
+    render json: @infected
+  end
+
   # POST /survivors
   def create
     @survivor = Survivor.new(survivor_params)
-    #@inventory = @survivor.build_inventory
-
+   
     if @survivor.save
       render json: @survivor, status: :created, location: @survivor
     else
@@ -27,7 +32,7 @@ class SurvivorsController < ApplicationController
 
   # PATCH/PUT /survivors/1
   def update
-    if @survivor.update(survivor_params)
+    if @survivor.update(survivor_update_params)
       render json: @survivor
     else
       render json: @survivor.errors, status: :unprocessable_entity
@@ -57,6 +62,10 @@ class SurvivorsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def survivor_params
       params.require(:survivor).permit(:name, :age, :gender, :infected, :geo_location, inventory_attributes: [:water, :food, :medication, :ammunition])
+    end
+
+    def survivor_update_params
+      params.require(:survivor).permit(:geo_location)
     end
 
 end
